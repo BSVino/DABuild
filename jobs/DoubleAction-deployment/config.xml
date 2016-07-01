@@ -59,7 +59,9 @@
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
-      <command>git lfs fetch
+      <command>#!/bin/bash
+
+git lfs fetch
 git lfs checkout
 
 app_id=317360
