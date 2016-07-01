@@ -69,7 +69,8 @@ depot_id=317364
 #manifest_id=3982673853004164674
 app_dir_name=&apos;Double Action&apos;
 #base_dir=../steamapps/content/app_&quot;$app_id&quot;/depot_&quot;$depot_id&quot;
-base_dir=../steamapps/common/&quot;$app_dir_name&quot;
+#base_dir=../steamapps/common/&quot;$app_dir_name&quot;
+base_dir=mp/game
 
 binary_source_win=~/boogaloo/DoubleAction/mp/game/dab/bin
 binary_source_linux=~/boogaloo/DoubleAction/vagrant/bin
@@ -94,9 +95,9 @@ fi
 #    cp -v &quot;$binary_source_win&quot;/&quot;$binary&quot; &quot;$binary_target&quot;/
 #done
 
-for binary in &quot;${binaries_linux[@]}&quot;; do
-    cp -v &quot;$binary_source_linux&quot;/&quot;$binary&quot; &quot;$binary_target&quot;/
-done
+#for binary in &quot;${binaries_linux[@]}&quot;; do
+#    cp -v &quot;$binary_source_linux&quot;/&quot;$binary&quot; &quot;$binary_target&quot;/
+#done
 
 #for binary in &quot;${binaries_mac[@]}&quot;; do
 #    cp -v &quot;$binary_source_mac&quot;/&quot;$binary&quot; &quot;$binary_target&quot;/
@@ -117,7 +118,7 @@ for vdf in &quot;$app_vdf&quot; &quot;$depot_vdf&quot;; do
     fi
 done
 
-../steamcmd.exe &quot;+login $steam_user&quot; &quot;+run_app_build $(cygpath --windows --absolute &quot;$app_vdf&quot;)&quot; &apos;+quit&apos;
+steamcmd/steamcmd.sh &quot;+login $steam_user&quot; &quot;+run_app_build $(cygpath --windows --absolute &quot;$app_vdf&quot;)&quot; &apos;+quit&apos;
 
 
 
