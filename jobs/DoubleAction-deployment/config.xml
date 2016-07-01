@@ -118,11 +118,12 @@ for vdf in &quot;$app_vdf&quot; &quot;$depot_vdf&quot;; do
     fi
 done
 
-~/steamcmd/steamcmd.sh &quot;+login $steam_user&quot; &quot;+run_app_build $(cygpath --windows --absolute &quot;$app_vdf&quot;)&quot; &apos;+quit&apos;
+~/steamcmd/steamcmd.sh &quot;+login $steam_user&quot; &quot;+run_app_build &quot;$PWD&quot;/&quot;$app_vdf&quot; &apos;+quit&apos;
 
-
-
-# Wenn fertig, dann alles ins Repo einchecken</command>
+echo &quot;----- Depot build log -----&quot;
+cat deployment/logfiles/depot_build_&quot;$depot_id&quot;.log
+echo &quot;---------------------------&quot;
+</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
