@@ -59,7 +59,7 @@
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
-      <command>#!/bin/bash
+      <command>#!/bin/bash -ex
 
 git lfs fetch
 git lfs checkout
