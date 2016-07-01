@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Experimental build</description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.19.2">
+      <projectUrl>https://github.com/BSVino/Viewback/</projectUrl>
+      <displayName></displayName>
+    </com.coravy.hudson.plugins.github.GithubProjectProperty>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.5.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>https://github.com/BSVino/Viewback.git</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions>
+      <hudson.plugins.git.extensions.impl.CloneOption>
+        <shallow>false</shallow>
+        <noTags>false</noTags>
+        <reference>/var/lib/jenkins/da_cache/reference_repos/Viewback.git</reference>
+        <depth>0</depth>
+      </hudson.plugins.git.extensions.impl.CloneOption>
+      <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+        <relativeTargetDir>Viewback</relativeTargetDir>
+      </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+    </extensions>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>true</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers>
+    <hudson.triggers.SCMTrigger>
+      <spec>H * * * *</spec>
+      <ignorePostCommitHooks>false</ignorePostCommitHooks>
+    </hudson.triggers.SCMTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>mkdir -p ext-deps
+cached_wget &apos;https://github.com/google/protobuf/releases/download/v2.5.0/protobuf-2.5.0.tar.bz2&apos; | tar xj -C ext-deps
+
+cd ext-deps/protobuf-2.5.0
+./configure --prefix=&quot;$PWD&quot;
+make -j 8</command>
+    </hudson.tasks.Shell>
+    <hudson.plugins.cmake.CmakeBuilder plugin="cmakebuilder@2.4.3">
+      <installationName>InSearchPath</installationName>
+      <workingDir>Viewback-build</workingDir>
+      <toolArgs>-D PROTOBUF_INCLUDE_DIR=&quot;$WORKSPACE&quot;/ext-deps/protobuf-2.5.0/src -D PROTOBUF_LIBRARY=&quot;$WORKSPACE&quot;/ext-deps/protobuf-2.5.0</toolArgs>
+      <sourceDir>Viewback</sourceDir>
+      <buildType>Release</buildType>
+      <cleanBuild>true</cleanBuild>
+      <toolSteps>
+        <hudson.plugins.cmake.BuildToolStep>
+          <withCmake>true</withCmake>
+        </hudson.plugins.cmake.BuildToolStep>
+      </toolSteps>
+    </hudson.plugins.cmake.CmakeBuilder>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>

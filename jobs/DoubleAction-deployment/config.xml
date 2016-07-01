@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Deployment to Steam</description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>-1</daysToKeep>
+        <numToKeep>-1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>5</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.19.2">
+      <projectUrl>https://github.com/BSVino/DoubleAction/</projectUrl>
+      <displayName></displayName>
+    </com.coravy.hudson.plugins.github.GithubProjectProperty>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.5.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>https://github.com/BSVino/DoubleAction.git</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/linuxtest</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions>
+      <hudson.plugins.git.extensions.impl.CloneOption>
+        <shallow>false</shallow>
+        <noTags>false</noTags>
+        <reference></reference>
+        <depth>0</depth>
+      </hudson.plugins.git.extensions.impl.CloneOption>
+    </extensions>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38">
+      <project>DoubleAction-linux</project>
+      <filter>**/*.so</filter>
+      <target>mp/game/dab/bin</target>
+      <excludes></excludes>
+      <selector class="hudson.plugins.copyartifact.StatusBuildSelector">
+        <stable>true</stable>
+      </selector>
+      <flatten>true</flatten>
+      <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
+    </hudson.plugins.copyartifact.CopyArtifact>
+    <hudson.tasks.Shell>
+      <command>git lfs fetch
+git lfs checkout
+
+exit
+
+app_id=317360
+depot_id=317364
+#manifest_id=3982673853004164674
+app_dir_name=&apos;Double Action&apos;
+#base_dir=../steamapps/content/app_&quot;$app_id&quot;/depot_&quot;$depot_id&quot;
+base_dir=../steamapps/common/&quot;$app_dir_name&quot;
+
+binary_source_win=~/boogaloo/DoubleAction/mp/game/dab/bin
+binary_source_linux=~/boogaloo/DoubleAction/vagrant/bin
+binary_target=&quot;$base_dir&quot;/dab/bin
+binaries_win=({client,server,game_shader_dx6}.dll)
+binaries_linux=({client,server,game_shader_dx6}{,_srv}.so)
+binaries_mac=({client,server,game_shader_dx6}.dylib)
+app_vdf=app.vdf
+depot_vdf=depot.vdf
+content_root=&quot;$base_dir&quot;
+steam_user=dabuild
+branch_name=&quot;$GIT_BRANCH&quot;
+description=&quot;Test build TomyLobo ($branch_name)&quot;
+
+if [ -z &quot;$branch_name&quot; ]; then
+	echo &gt;&amp;2 &apos;No branch given&apos;
+	exit 1
+fi
+
+
+#for binary in &quot;${binaries_win[@]}&quot;; do
+#    cp -v &quot;$binary_source_win&quot;/&quot;$binary&quot; &quot;$binary_target&quot;/
+#done
+
+for binary in &quot;${binaries_linux[@]}&quot;; do
+    cp -v &quot;$binary_source_linux&quot;/&quot;$binary&quot; &quot;$binary_target&quot;/
+done
+
+#for binary in &quot;${binaries_mac[@]}&quot;; do
+#    cp -v &quot;$binary_source_mac&quot;/&quot;$binary&quot; &quot;$binary_target&quot;/
+#done
+
+for vdf in &quot;$app_vdf&quot; &quot;$depot_vdf&quot;; do
+    vdf_template=&quot;$vdf&quot;.template
+    sed &quot;
+        s#@@@APP_ID@@@#$app_id#
+        s#@@@DEPOT_ID@@@#$depot_id#
+        s#@@@CONTENT_ROOT@@@#$content_root#
+        s#@@@DESCRIPTION@@@#$description#
+        s#@@@BRANCH_NAME@@@#$branch_name#
+    &quot; &quot;$vdf_template&quot; &gt; &quot;$vdf&quot;
+    if grep -qFe &apos;@@@&apos; &quot;$vdf&quot;; then
+        echo &gt;&amp;2 &quot;Error: @@@ found in final file &apos;$vdf&apos; - aborting!&quot;
+        exit 1
+    fi
+done
+
+../steamcmd.exe &quot;+login $steam_user&quot; &quot;+run_app_build $(cygpath --windows --absolute &quot;$app_vdf&quot;)&quot; &apos;+quit&apos;
+
+
+
+# Wenn fertig, dann alles ins Repo einchecken</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers>
+    <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
+      <buildSteps>
+        <hudson.tasks.Shell>
+          <command>reference_repo=/var/lib/jenkins/da_cache/reference_repos/DoubleAction.git
+
+if [ ! -f .git ]; then
+
+	rm -rf &quot;$WORKSPACE&quot;/.git
+
+	cd &quot;$reference_repo&quot;
+	git worktree prune
+	#git worktree add -f &quot;$WORKSPACE&quot; &quot;$GIT_BRANCH&quot;
+	git worktree add -f &quot;$WORKSPACE&quot; origin/develop
+fi
+
+git lfs install
+</command>
+        </hudson.tasks.Shell>
+      </buildSteps>
+      <failOnError>true</failOnError>
+    </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
+  </buildWrappers>
+</project>
