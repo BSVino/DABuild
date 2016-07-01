@@ -118,7 +118,7 @@ for vdf in &quot;$app_vdf&quot; &quot;$depot_vdf&quot;; do
     fi
 done
 
-~/steamcmd/steamcmd.sh &quot;+login $steam_user&quot; &quot;+run_app_build &quot;$PWD&quot;/&quot;$app_vdf&quot; &apos;+quit&apos;
+~/steamcmd/steamcmd.sh &quot;+login $steam_user&quot; &quot;+run_app_build $PWD/$app_vdf&quot; &apos;+quit&apos;
 
 echo &quot;----- Depot build log -----&quot;
 cat deployment/logfiles/depot_build_&quot;$depot_id&quot;.log
