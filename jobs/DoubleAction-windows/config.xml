@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Double Action Linux Build</description>
+  <description>Double Action Windows Build</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <jenkins.model.BuildDiscarderProperty>
@@ -52,46 +52,7 @@
     </hudson.triggers.SCMTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
-  <builders>
-    <hudson.tasks.Shell>
-      <command>cd mp/src
-
-rm ~/workspace/DoubleAction-linux/mp/src/lib/public/linux32/mathlib.a
-#find . -type f -name &apos;*.a&apos; -delete
-#git checkout -- lib/public/linux32/libprotobuf.a
-#git checkout -- lib/public/linux32/shaderlib.a
-#git checkout -- lib/public/linux32/bitmap.a
-#git checkout -- lib/public/linux32/choreoobjects.a
-#git checkout -- lib/public/linux32/dmxloader.a
-#git checkout -- lib/public/linux32/matsys_controls.a
-#git checkout -- lib/public/linux32/particles.a
-#git checkout -- lib/public/linux32/tier2.a
-#git checkout -- lib/public/linux32/tier3.a
-#git checkout -- lib/public/linux32/vtf.a
-
-# Replace broken cURL
-#rm -rf thirdparty/curl-7.31.0
-cached_wget &apos;https://curl.haxx.se/download/curl-7.31.0.tar.bz2&apos; | tar xj -C thirdparty curl-7.31.0/include/curl/curlbuild.h
-#cd thirdparty/curl-7.31.0
-#schroot --chroot steamrt_scout_i386 -- ./configure --prefix=&quot;$PWD&quot; --enable-static --disable-shared
-#schroot --chroot steamrt_scout_i386 -- make -j 8
-#schroot --chroot steamrt_scout_i386 -- make install || [ &quot;$?&quot; = 2 ] # ignore some errors
-#cd ../..
-
-#cp thirdparty/curl-7.31.0/lib/.libs/libcurl.a lib/common/linux32/
-#ln -s /usr/lib/i386-linux-gnu/libcrypto.a lib/common/linux32/
-#ln -s /usr/lib/i386-linux-gnu/libcurl.a lib/common/linux32/
-#ln -s /usr/lib/i386-linux-gnu/libssl.a lib/common/linux32/
-#ln -s /usr/lib/i386-linux-gnu/libz.a lib/public/linux32/
-
-schroot --chroot steamrt_scout_i386 -- ./creategameprojects
-schroot --chroot steamrt_scout_i386 -- make -j 8 -f DoubleAction.mak
-
-rm -rf /vagrant/bin
-cp -R ../game/dab/bin /vagrant
-</command>
-    </hudson.tasks.Shell>
-  </builders>
+  <builders/>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
       <artifacts>mp/game/dab/bin/*</artifacts>
@@ -103,24 +64,5 @@ cp -R ../game/dab/bin /vagrant
       <caseSensitive>true</caseSensitive>
     </hudson.tasks.ArtifactArchiver>
   </publishers>
-  <buildWrappers>
-    <org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper plugin="preSCMbuildstep@0.3">
-      <buildSteps>
-        <hudson.tasks.Shell>
-          <command>reference_repo=/var/lib/jenkins/da_cache/reference_repos/DoubleAction.git
-
-if [ ! -f .git ]; then
-
-	rm -rf &quot;$WORKSPACE&quot;/.git
-
-	cd &quot;$reference_repo&quot;
-	git worktree prune
-	git worktree add -f &quot;$WORKSPACE&quot; &quot;$GIT_BRANCH&quot;
-fi
-</command>
-        </hudson.tasks.Shell>
-      </buildSteps>
-      <failOnError>true</failOnError>
-    </org.jenkinsci.plugins.preSCMbuildstep.PreSCMBuildStepsWrapper>
-  </buildWrappers>
+  <buildWrappers/>
 </project>
