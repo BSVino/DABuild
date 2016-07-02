@@ -84,7 +84,7 @@ echo.EndGlobal&gt;&gt; DoubleAction.sln&#xd;
     <hudson.plugins.msbuild.MsBuildBuilder plugin="msbuild@1.25">
       <msBuildName>from .NET Framework 4.0.30319</msBuildName>
       <msBuildFile>mp\src\DoubleAction.sln</msBuildFile>
-      <cmdLineArgs></cmdLineArgs>
+      <cmdLineArgs>/p:Configuration=Release;Platform=Win32</cmdLineArgs>
       <buildVariablesAsProperties>false</buildVariablesAsProperties>
       <continueOnBuildFailure>false</continueOnBuildFailure>
       <unstableIfWarnings>false</unstableIfWarnings>
