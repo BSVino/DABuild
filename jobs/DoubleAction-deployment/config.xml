@@ -71,18 +71,10 @@ git lfs checkout
 
 app_id=317360
 depot_id=317364
-#manifest_id=3982673853004164674
-app_dir_name=&apos;Double Action&apos;
-#base_dir=../steamapps/content/app_&quot;$app_id&quot;/depot_&quot;$depot_id&quot;
+#app_dir_name=&apos;Double Action&apos;
 #base_dir=../steamapps/common/&quot;$app_dir_name&quot;
 base_dir=mp/game
 
-binary_source_win=~/boogaloo/DoubleAction/mp/game/dab/bin
-binary_source_linux=~/boogaloo/DoubleAction/vagrant/bin
-binary_target=&quot;$base_dir&quot;/dab/bin
-binaries_win=({client,server,game_shader_dx6}.dll)
-binaries_linux=({client,server,game_shader_dx6}{,_srv}.so)
-binaries_mac=({client,server,game_shader_dx6}.dylib)
 app_vdf=app.vdf
 depot_vdf=depot.vdf
 content_root=&quot;$base_dir&quot;
@@ -95,18 +87,6 @@ if [ -z &quot;$branch_name&quot; ]; then
 	exit 1
 fi
 
-
-#for binary in &quot;${binaries_win[@]}&quot;; do
-#    cp -v &quot;$binary_source_win&quot;/&quot;$binary&quot; &quot;$binary_target&quot;/
-#done
-
-#for binary in &quot;${binaries_linux[@]}&quot;; do
-#    cp -v &quot;$binary_source_linux&quot;/&quot;$binary&quot; &quot;$binary_target&quot;/
-#done
-
-#for binary in &quot;${binaries_mac[@]}&quot;; do
-#    cp -v &quot;$binary_source_mac&quot;/&quot;$binary&quot; &quot;$binary_target&quot;/
-#done
 
 for vdf in &quot;$app_vdf&quot; &quot;$depot_vdf&quot;; do
     vdf_template=deployment/&quot;$vdf&quot;.template
@@ -126,7 +106,7 @@ done
 ~/steamcmd/steamcmd.sh &quot;+login $steam_user&quot; &quot;+run_app_build $PWD/$app_vdf&quot; &apos;+quit&apos;
 
 echo &quot;----- Depot build log -----&quot;
-cat deployment/logfiles/depot_build_&quot;$depot_id&quot;.log
+cat logfiles/depot_build_&quot;$depot_id&quot;.log
 echo &quot;---------------------------&quot;
 </command>
     </hudson.tasks.Shell>
