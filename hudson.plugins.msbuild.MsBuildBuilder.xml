@@ -3,7 +3,7 @@
   <installations>
     <hudson.plugins.msbuild.MsBuildInstallation>
       <name>from .NET Framework 3.5</name>
-      <home>&quot;C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe&quot;</home>
+      <home>C:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe</home>
       <properties/>
     </hudson.plugins.msbuild.MsBuildInstallation>
   </installations>
