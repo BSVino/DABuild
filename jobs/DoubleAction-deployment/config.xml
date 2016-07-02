@@ -31,14 +31,7 @@
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
     <submoduleCfg class="list"/>
-    <extensions>
-      <hudson.plugins.git.extensions.impl.CloneOption>
-        <shallow>false</shallow>
-        <noTags>false</noTags>
-        <reference></reference>
-        <depth>0</depth>
-      </hudson.plugins.git.extensions.impl.CloneOption>
-    </extensions>
+    <extensions/>
   </scm>
   <assignedNode>linux</assignedNode>
   <canRoam>false</canRoam>
@@ -51,6 +44,17 @@
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38">
       <project>DoubleAction-linux</project>
       <filter>**/*.so</filter>
+      <target>mp/game/dab/bin</target>
+      <excludes></excludes>
+      <selector class="hudson.plugins.copyartifact.StatusBuildSelector">
+        <stable>true</stable>
+      </selector>
+      <flatten>true</flatten>
+      <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
+    </hudson.plugins.copyartifact.CopyArtifact>
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38">
+      <project>DoubleAction-windows</project>
+      <filter>**/*.dll</filter>
       <target>mp/game/dab/bin</target>
       <excludes></excludes>
       <selector class="hudson.plugins.copyartifact.StatusBuildSelector">
