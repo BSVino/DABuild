@@ -64,7 +64,7 @@
       <command>cd mp\src&#xd;
 &#xd;
 ::creategameprojects.bat&#xd;
-devtools\bin\vpc.exe /da /platforms +game /mksln DoubleAction.sln /2010&#xd;
+devtools\bin\vpc.exe /da +game /mksln DoubleAction.sln /2010&#xd;
 &#xd;
 echo &quot;Global&quot; &gt;&gt; DoubleAction.sln&#xd;
 echo &quot;	GlobalSection(SolutionConfigurationPlatforms) = preSolution&quot; &gt;&gt; DoubleAction.sln&#xd;
