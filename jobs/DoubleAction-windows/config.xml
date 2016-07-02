@@ -63,11 +63,9 @@
     <hudson.tasks.BatchFile>
       <command>cd mp\src&#xd;
 &#xd;
-::creategameprojects.bat&#xd;
-devtools\bin\vpc.exe /da +game /mksln DoubleAction.sln /2010&#xd;
+call creategameprojects.bat&#xd;
 &#xd;
 copy /Y DoubleAction.sln DoubleAction.sln.k&#xd;
-&#xd;
 &#xd;
 echo.Global&gt;&gt; DoubleAction.sln&#xd;
 echo.	GlobalSection(SolutionConfigurationPlatforms) = preSolution&gt;&gt; DoubleAction.sln&#xd;
