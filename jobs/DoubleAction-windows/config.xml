@@ -42,7 +42,7 @@
       <hudson.plugins.git.extensions.impl.CloneOption>
         <shallow>false</shallow>
         <noTags>false</noTags>
-        <reference>C:\cygwin64\home\Besitzer\boogaloo\DoubleAction</reference>
+        <reference></reference>
         <depth>0</depth>
       </hudson.plugins.git.extensions.impl.CloneOption>
     </extensions>
