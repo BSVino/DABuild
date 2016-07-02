@@ -40,7 +40,7 @@
       </hudson.plugins.git.extensions.impl.CloneOption>
     </extensions>
   </scm>
-  <assignedNode>linux</assignedNode>
+  <assignedNode>windows</assignedNode>
   <canRoam>false</canRoam>
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
@@ -52,7 +52,14 @@
     </hudson.triggers.SCMTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
-  <builders/>
+  <builders>
+    <hudson.tasks.BatchFile>
+      <command>cd mp\src&#xd;
+&#xd;
+creategameprojects.bat&#xd;
+</command>
+    </hudson.tasks.BatchFile>
+  </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
       <artifacts>mp/game/dab/bin/*</artifacts>
