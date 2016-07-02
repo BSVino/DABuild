@@ -83,8 +83,8 @@ binary_target=&quot;$base_dir&quot;/dab/bin
 binaries_win=({client,server,game_shader_dx6}.dll)
 binaries_linux=({client,server,game_shader_dx6}{,_srv}.so)
 binaries_mac=({client,server,game_shader_dx6}.dylib)
-app_vdf=deployment/app.vdf
-depot_vdf=deployment/depot.vdf
+app_vdf=app.vdf
+depot_vdf=depot.vdf
 content_root=&quot;$base_dir&quot;
 steam_user=dabuild
 branch_name=&quot;$GIT_BRANCH&quot;
@@ -109,7 +109,7 @@ fi
 #done
 
 for vdf in &quot;$app_vdf&quot; &quot;$depot_vdf&quot;; do
-    vdf_template=&quot;$vdf&quot;.template
+    vdf_template=deployment/&quot;$vdf&quot;.template
     sed &quot;
         s#@@@APP_ID@@@#$app_id#
         s#@@@DEPOT_ID@@@#$depot_id#
