@@ -75,7 +75,7 @@ echo.		Release^|Win32 = Release^|Win32&gt;&gt; DoubleAction.sln&#xd;
 echo.	EndGlobalSection&gt;&gt; DoubleAction.sln&#xd;
 echo.	GlobalSection(ProjectConfigurationPlatforms) = postSolution&gt;&gt; DoubleAction.sln&#xd;
 &#xd;
-sed -rn &apos;s/^Project\(.*&quot;(.*)&quot;$/\t\t\1.{D7D97049-1C31-93A3-06DC-BD9899FAC989}.Release^|Win32.Build.0 = Release^|Win32/p&apos; DoubleAction.sln.k&#xd;
+sed -rn &apos;s/^Project\(.*&quot;(.*)&quot;$/\t\t\1.Release^|Win32.Build.0 = Release^|Win32/p&apos; DoubleAction.sln.k &gt;&gt; DoubleAction.sln&#xd;
 &#xd;
 echo.	EndGlobalSection&gt;&gt; DoubleAction.sln&#xd;
 echo.	GlobalSection(SolutionProperties) = preSolution&gt;&gt; DoubleAction.sln&#xd;
