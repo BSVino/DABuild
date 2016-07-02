@@ -63,8 +63,22 @@
     <hudson.tasks.BatchFile>
       <command>cd mp\src&#xd;
 &#xd;
-::creategameprojects.bat&#xd;
-devtools\bin\vpc.exe /da /platforms +game /mksln DoubleAction.sln /2010&#xd;
+creategameprojects.bat&#xd;
+::devtools\bin\vpc.exe /da /platforms +game /mksln DoubleAction.sln /2010&#xd;
+&#xd;
+echo &quot;Global&quot; &gt;&gt; DoubleAction.sln&#xd;
+echo &quot;	GlobalSection(SolutionConfigurationPlatforms) = preSolution&quot; &gt;&gt; DoubleAction.sln&#xd;
+echo &quot;		Debug|Win32 = Debug|Win32&quot; &gt;&gt; DoubleAction.sln&#xd;
+echo &quot;		Release|Win32 = Release|Win32&quot; &gt;&gt; DoubleAction.sln&#xd;
+echo &quot;	EndGlobalSection&quot; &gt;&gt; DoubleAction.sln&#xd;
+echo &quot;	GlobalSection(ProjectConfigurationPlatforms) = postSolution&quot; &gt;&gt; DoubleAction.sln&#xd;
+echo &quot;		Debug|Win32 = Debug|Win32&quot; &gt;&gt; DoubleAction.sln&#xd;
+echo &quot;		Release|Win32 = Release|Win32&quot; &gt;&gt; DoubleAction.sln&#xd;
+echo &quot;	EndGlobalSection&quot; &gt;&gt; DoubleAction.sln&#xd;
+echo &quot;	GlobalSection(SolutionProperties) = preSolution&quot; &gt;&gt; DoubleAction.sln&#xd;
+echo &quot;		HideSolutionNode = FALSE&quot; &gt;&gt; DoubleAction.sln&#xd;
+echo &quot;	EndGlobalSection&quot; &gt;&gt; DoubleAction.sln&#xd;
+echo &quot;EndGlobal&quot; &gt;&gt; DoubleAction.sln&#xd;
 </command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.msbuild.MsBuildBuilder plugin="msbuild@1.25">
