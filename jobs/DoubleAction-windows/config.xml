@@ -66,6 +66,14 @@
 creategameprojects.bat&#xd;
 </command>
     </hudson.tasks.BatchFile>
+    <hudson.plugins.msbuild.MsBuildBuilder plugin="msbuild@1.25">
+      <msBuildName>(Default)</msBuildName>
+      <msBuildFile>mp\src\DoubleAction.sln</msBuildFile>
+      <cmdLineArgs></cmdLineArgs>
+      <buildVariablesAsProperties>false</buildVariablesAsProperties>
+      <continueOnBuildFailure>false</continueOnBuildFailure>
+      <unstableIfWarnings>false</unstableIfWarnings>
+    </hudson.plugins.msbuild.MsBuildBuilder>
   </builders>
   <publishers>
     <hudson.tasks.ArtifactArchiver>
