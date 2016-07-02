@@ -87,7 +87,7 @@ app_vdf=app.vdf
 depot_vdf=depot.vdf
 content_root=&quot;$base_dir&quot;
 steam_user=dabuild
-branch_name=&quot;$GIT_BRANCH&quot;
+branch_name=&quot;$(basename &quot;$GIT_BRANCH&quot;)&quot;
 description=&quot;Test build TomyLobo ($branch_name)&quot;
 
 if [ -z &quot;$branch_name&quot; ]; then
