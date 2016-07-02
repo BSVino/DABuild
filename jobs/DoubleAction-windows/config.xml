@@ -63,7 +63,8 @@
     <hudson.tasks.BatchFile>
       <command>cd mp\src&#xd;
 &#xd;
-creategameprojects.bat&#xd;
+::creategameprojects.bat&#xd;
+devtools\bin\vpc.exe /dp +game /mksln DoubleAction.sln /2010&#xd;
 </command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.msbuild.MsBuildBuilder plugin="msbuild@1.25">
