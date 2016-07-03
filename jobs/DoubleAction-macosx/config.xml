@@ -31,14 +31,7 @@
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
     <submoduleCfg class="list"/>
-    <extensions>
-      <hudson.plugins.git.extensions.impl.CloneOption>
-        <shallow>false</shallow>
-        <noTags>false</noTags>
-        <reference></reference>
-        <depth>0</depth>
-      </hudson.plugins.git.extensions.impl.CloneOption>
-    </extensions>
+    <extensions/>
   </scm>
   <assignedNode>linux</assignedNode>
   <canRoam>false</canRoam>
@@ -54,41 +47,9 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>cd mp/src
+      <command>branch_name=&quot;$(basename &quot;$GIT_BRANCH&quot;)&quot;
 
-rm ~/workspace/DoubleAction-linux/mp/src/lib/public/linux32/mathlib.a
-#find . -type f -name &apos;*.a&apos; -delete
-#git checkout -- lib/public/linux32/libprotobuf.a
-#git checkout -- lib/public/linux32/shaderlib.a
-#git checkout -- lib/public/linux32/bitmap.a
-#git checkout -- lib/public/linux32/choreoobjects.a
-#git checkout -- lib/public/linux32/dmxloader.a
-#git checkout -- lib/public/linux32/matsys_controls.a
-#git checkout -- lib/public/linux32/particles.a
-#git checkout -- lib/public/linux32/tier2.a
-#git checkout -- lib/public/linux32/tier3.a
-#git checkout -- lib/public/linux32/vtf.a
-
-# Replace broken cURL
-#rm -rf thirdparty/curl-7.31.0
-cached_wget &apos;https://curl.haxx.se/download/curl-7.31.0.tar.bz2&apos; | tar xj -C thirdparty curl-7.31.0/include/curl/curlbuild.h
-#cd thirdparty/curl-7.31.0
-#schroot --chroot steamrt_scout_i386 -- ./configure --prefix=&quot;$PWD&quot; --enable-static --disable-shared
-#schroot --chroot steamrt_scout_i386 -- make -j 8
-#schroot --chroot steamrt_scout_i386 -- make install || [ &quot;$?&quot; = 2 ] # ignore some errors
-#cd ../..
-
-#cp thirdparty/curl-7.31.0/lib/.libs/libcurl.a lib/common/linux32/
-#ln -s /usr/lib/i386-linux-gnu/libcrypto.a lib/common/linux32/
-#ln -s /usr/lib/i386-linux-gnu/libcurl.a lib/common/linux32/
-#ln -s /usr/lib/i386-linux-gnu/libssl.a lib/common/linux32/
-#ln -s /usr/lib/i386-linux-gnu/libz.a lib/public/linux32/
-
-schroot --chroot steamrt_scout_i386 -- ./creategameprojects
-schroot --chroot steamrt_scout_i386 -- make -j 8 -f DoubleAction.mak
-
-rm -rf /vagrant/bin
-cp -R ../game/dab/bin /vagrant
+tar xvf /vagrant/&quot;$branch_name&quot;.tar.gz --show-transformed --transform=&apos;s#.*/##&apos; --wildcards &quot;$branch_name&quot;/{dab/client,dab/server,game_shader_dx?}.dylib -C mp/game/dab/bin
 </command>
     </hudson.tasks.Shell>
   </builders>
