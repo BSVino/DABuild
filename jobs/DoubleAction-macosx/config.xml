@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Double Action Linux Build</description>
+  <description>Double Action Mac OS X Build&#xd;
+&#xd;
+Currently it just untars and archives stuff</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <jenkins.model.BuildDiscarderProperty>
