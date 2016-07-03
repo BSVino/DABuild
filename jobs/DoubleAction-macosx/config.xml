@@ -44,7 +44,9 @@ Currently it just untars and archives stuff</description>
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>branch_name=&quot;$(basename &quot;$GIT_BRANCH&quot;)&quot;
+      <command>#!/bin/bash -ex
+
+branch_name=&quot;$(basename &quot;$GIT_BRANCH&quot;)&quot;
 
 tar xvf /vagrant/&quot;$branch_name&quot;.tar.gz --show-transformed --transform=&apos;s#.*/##&apos; --wildcards &quot;$branch_name&quot;/{dab/client,dab/server,game_shader_dx?}.dylib -C mp/game/dab/bin
 </command>
