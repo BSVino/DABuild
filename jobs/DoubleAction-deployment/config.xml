@@ -26,7 +26,7 @@
     </userRemoteConfigs>
     <branches>
       <hudson.plugins.git.BranchSpec>
-        <name>*/linuxtest</name>
+        <name>*/develop</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
@@ -66,28 +66,31 @@
     <hudson.tasks.Shell>
       <command>#!/bin/bash -ex
 
+# Make sure LFS is all checked out
 git lfs fetch
 git lfs checkout
 
+# Variables to replaces in the template
 app_id=317360
 depot_id=317364
-#app_dir_name=&apos;Double Action&apos;
-#base_dir=../steamapps/common/&quot;$app_dir_name&quot;
-base_dir=mp/game
-
-app_vdf=app.vdf
-depot_vdf=depot.vdf
-content_root=&quot;$base_dir&quot;
-steam_user=dabuild
+content_root=mp/game
 branch_name=&quot;$(basename &quot;$GIT_BRANCH&quot;)&quot;
 description=&quot;Test build TomyLobo ($branch_name)&quot;
 
+# VDF filenames
+app_vdf=app.vdf
+depot_vdf=depot.vdf
+
+# User to use to upload
+steam_user=dabuild
+
+# Sanity-check 
 if [ -z &quot;$branch_name&quot; ]; then
 	echo &gt;&amp;2 &apos;No branch given&apos;
 	exit 1
 fi
 
-
+# Create vdf files from templates
 for vdf in &quot;$app_vdf&quot; &quot;$depot_vdf&quot;; do
     vdf_template=deployment/&quot;$vdf&quot;.template
     sed &quot;
@@ -97,6 +100,8 @@ for vdf in &quot;$app_vdf&quot; &quot;$depot_vdf&quot;; do
         s#@@@DESCRIPTION@@@#$description#
         s#@@@BRANCH_NAME@@@#$branch_name#
     &quot; &quot;$vdf_template&quot; &gt; &quot;$vdf&quot;
+
+    # Sanity-check for missing template markers
     if grep -qFe &apos;@@@&apos; &quot;$vdf&quot;; then
         echo &gt;&amp;2 &quot;Error: @@@ found in final file &apos;$vdf&apos; - aborting!&quot;
         exit 1
@@ -104,6 +109,8 @@ for vdf in &quot;$app_vdf&quot; &quot;$depot_vdf&quot;; do
 done
 
 ~/steamcmd/steamcmd.sh &quot;+login $steam_user&quot; &quot;+run_app_build $PWD/$app_vdf&quot; &apos;+quit&apos;
+
+set +x
 
 echo &quot;----- Depot build log -----&quot;
 cat logfiles/depot_build_&quot;$depot_id&quot;.log
