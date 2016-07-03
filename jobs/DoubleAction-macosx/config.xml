@@ -28,7 +28,7 @@ Currently it just untars and archives stuff</description>
     </userRemoteConfigs>
     <branches>
       <hudson.plugins.git.BranchSpec>
-        <name>refs/tags//v1.2.1</name>
+        <name>refs/tags/v1.2.1</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
