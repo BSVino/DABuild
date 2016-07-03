@@ -108,7 +108,7 @@ if [ ! -f .git ]; then
 
 	cd &quot;$reference_repo&quot;
 	git worktree prune
-	git worktree add -f &quot;$WORKSPACE&quot; &quot;$GIT_BRANCH&quot;
+	git worktree add -f &quot;$WORKSPACE&quot; origin/develop
 fi
 </command>
         </hudson.tasks.Shell>
