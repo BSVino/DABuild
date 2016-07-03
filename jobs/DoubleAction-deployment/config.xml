@@ -41,7 +41,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>DoubleAction-linux, DoubleAction-windows, DoubleAction-macosx</upstreamProjects>
+      <upstreamProjects>DoubleAction-linux, DoubleAction-windows, DoubleAction-macosx, </upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
@@ -75,7 +75,7 @@
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.38">
-      <project></project>
+      <project>DoubleAction-macosx</project>
       <filter>**/*.dylib</filter>
       <target>mp/game/dab/bin</target>
       <excludes></excludes>
