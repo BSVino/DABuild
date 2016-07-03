@@ -28,7 +28,7 @@ Currently it just untars and archives stuff</description>
     </userRemoteConfigs>
     <branches>
       <hudson.plugins.git.BranchSpec>
-        <name>*/develop</name>
+        <name>*/v1.2.1</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
@@ -48,7 +48,7 @@ Currently it just untars and archives stuff</description>
 
 branch_name=&quot;$(basename &quot;$GIT_BRANCH&quot;)&quot;
 
-tar xvf /vagrant/&quot;$branch_name&quot;.tar.gz --show-transformed --transform=&apos;s#.*/##&apos; --wildcards &quot;$branch_name&quot;/{dab/client,dab/server,game_shader_dx?}.dylib -C mp/game/dab/bin
+tar xvf /vagrant/&quot;$branch_name&quot;.tar.gz --show-transformed --transform=&apos;s#.*/##&apos; --wildcards -C mp/game/dab/bin &quot;$branch_name&quot;/{dab/client,dab/server,game_shader_dx?}.dylib
 </command>
     </hudson.tasks.Shell>
   </builders>
