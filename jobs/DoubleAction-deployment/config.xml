@@ -41,7 +41,7 @@
   <triggers>
     <jenkins.triggers.ReverseBuildTrigger>
       <spec></spec>
-      <upstreamProjects>DoubleAction-linux, DoubleAction-windows</upstreamProjects>
+      <upstreamProjects>DoubleAction-linux, DoubleAction-windows, DoubleAction-macosx</upstreamProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>
