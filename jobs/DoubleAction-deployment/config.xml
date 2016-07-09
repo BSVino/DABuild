@@ -57,8 +57,8 @@
       <filter>**/*.so</filter>
       <target>mp/game/dab/bin</target>
       <excludes></excludes>
-      <selector class="hudson.plugins.copyartifact.StatusBuildSelector">
-        <stable>true</stable>
+      <selector class="hudson.plugins.copyartifact.SpecificBuildSelector">
+        <buildNumber>8</buildNumber>
       </selector>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
