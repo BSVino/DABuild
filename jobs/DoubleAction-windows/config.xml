@@ -17,8 +17,8 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.6.0">
           <name>git_ref</name>
           <description>The Git branch or tag to build</description>
-          <uuid>e29d6f24-b6fd-48eb-b906-f3ddee10968e</uuid>
-          <type>PT_BRANCH_TAG</type>
+          <uuid>8d22e739-10e9-4497-b2e8-6dfe0c0ecc5a</uuid>
+          <type>PT_BRANCH</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
           <branchFilter>.*</branchFilter>
