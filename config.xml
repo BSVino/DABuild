@@ -15,7 +15,7 @@
   <disableRememberMe>false</disableRememberMe>
   <projectNamingStrategy class="jenkins.model.ProjectNamingStrategy$PatternProjectNamingStrategy">
     <namePattern>[^[:space:]]*</namePattern>
-    <description>No spaces</description>
+    <description>No spaces allowed</description>
     <forceExistingJobs>false</forceExistingJobs>
   </projectNamingStrategy>
   <workspaceDir>${JENKINS_HOME}/workspace/${ITEM_FULLNAME}</workspaceDir>
