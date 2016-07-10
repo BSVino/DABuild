@@ -16,7 +16,7 @@
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
           <name>branch</name>
-          <description>Git branch to build</description>
+          <description>Git branch or tag to build</description>
           <defaultValue>*/develop</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
