@@ -15,7 +15,7 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.StringParameterDefinition>
-          <name>branch</name>
+          <name>git_ref</name>
           <description>Git branch or tag to build</description>
           <defaultValue>*/develop</defaultValue>
         </hudson.model.StringParameterDefinition>
