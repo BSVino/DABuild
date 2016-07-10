@@ -17,13 +17,13 @@
         <net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition plugin="git-parameter@0.6.0">
           <name>git_ref</name>
           <description>The Git branch or tag to build</description>
-          <uuid>913ae732-61cb-4ea5-ab7b-23d437eb3d7f</uuid>
+          <uuid>e29d6f24-b6fd-48eb-b906-f3ddee10968e</uuid>
           <type>PT_BRANCH_TAG</type>
           <branch></branch>
           <tagFilter>*</tagFilter>
           <branchFilter>.*</branchFilter>
           <sortMode>DESCENDING_SMART</sortMode>
-          <defaultValue>origin/develop</defaultValue>
+          <defaultValue>develop</defaultValue>
           <quickFilterEnabled>true</quickFilterEnabled>
         </net.uaznia.lukanus.hudson.plugins.gitparameter.GitParameterDefinition>
       </parameterDefinitions>
