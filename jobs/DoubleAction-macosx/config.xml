@@ -14,6 +14,15 @@ Currently it just untars and archives stuff</description>
         <artifactNumToKeep>5</artifactNumToKeep>
       </strategy>
     </jenkins.model.BuildDiscarderProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>git_ref</name>
+          <description>Git branch or tag to build</description>
+          <defaultValue>*/develop</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
     <com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.19.2">
       <projectUrl>https://github.com/BSVino/DoubleAction/</projectUrl>
       <displayName></displayName>
