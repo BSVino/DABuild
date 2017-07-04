@@ -1,7 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>Deployment to Steam</description>
+  <description>Deployment to Steam&#xd;
+&#xd;
+Temporary changes:&#xd;
+- default branch -&gt; stormy-maps&#xd;
+- Enable &quot;Poll SCM&quot;</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
@@ -27,7 +31,7 @@
         <hudson.model.StringParameterDefinition>
           <name>git_ref</name>
           <description>Git branch or tag to build</description>
-          <defaultValue>refs/remotes/origin/develop</defaultValue>
+          <defaultValue>refs/remotes/origin/stormy-maps</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -64,6 +68,10 @@
         <completeBuild>true</completeBuild>
       </threshold>
     </jenkins.triggers.ReverseBuildTrigger>
+    <hudson.triggers.SCMTrigger>
+      <spec>H/5 * * * *</spec>
+      <ignorePostCommitHooks>false</ignorePostCommitHooks>
+    </hudson.triggers.SCMTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
