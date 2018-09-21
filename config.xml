@@ -2,6 +2,7 @@
 <hudson>
   <disabledAdministrativeMonitors/>
   <version>2.0</version>
+  <installStateName>RESTART</installStateName>
   <numExecutors>1</numExecutors>
   <mode>NORMAL</mode>
   <useSecurity>true</useSecurity>
