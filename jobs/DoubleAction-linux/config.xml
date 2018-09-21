@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
 <project>
   <actions/>
   <description>Double Action Linux Build</description>
@@ -28,6 +28,7 @@
           <name>git_ref</name>
           <description>Git branch or tag to build</description>
           <defaultValue>refs/remotes/origin/develop</defaultValue>
+          <trim>false</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -46,7 +47,15 @@
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
     <submoduleCfg class="list"/>
-    <extensions/>
+    <extensions>
+      <hudson.plugins.git.extensions.impl.CloneOption>
+        <shallow>false</shallow>
+        <noTags>false</noTags>
+        <reference></reference>
+        <depth>0</depth>
+        <honorRefspec>false</honorRefspec>
+      </hudson.plugins.git.extensions.impl.CloneOption>
+    </extensions>
   </scm>
   <assignedNode>linux</assignedNode>
   <canRoam>false</canRoam>
@@ -130,7 +139,7 @@ cp -R ../game/dab/bin /vagrant
         <hudson.tasks.Shell>
           <command>reference_repo=/var/lib/jenkins/da_cache/reference_repos/DoubleAction.git
 
-if [ ! -f .git ]; then
+if false &amp;&amp; [ ! -f .git ]; then
 
 	rm -rf &quot;$WORKSPACE&quot;/.git
 
