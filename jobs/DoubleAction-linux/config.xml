@@ -55,6 +55,7 @@
         <depth>0</depth>
         <honorRefspec>false</honorRefspec>
       </hudson.plugins.git.extensions.impl.CloneOption>
+      <hudson.plugins.git.extensions.impl.CheckoutOption/>
     </extensions>
   </scm>
   <assignedNode>linux</assignedNode>
@@ -139,7 +140,7 @@ cp -R ../game/dab/bin /vagrant
         <hudson.tasks.Shell>
           <command>reference_repo=/var/lib/jenkins/da_cache/reference_repos/DoubleAction.git
 
-if false &amp;&amp; [ ! -f .git ]; then
+if [ ! -f .git ]; then
 
 	rm -rf &quot;$WORKSPACE&quot;/.git
 
