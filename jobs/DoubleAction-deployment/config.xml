@@ -71,7 +71,7 @@
     </hudson.plugins.copyartifact.CopyArtifact>
     <hudson.tasks.Shell>
       <command>#!/bin/bash -ex
-
+env
 # Make sure LFS is all checked out
 git lfs fetch
 git lfs checkout
