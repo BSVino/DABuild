@@ -75,7 +75,8 @@ cached_wget &apos;https://curl.haxx.se/download/curl-7.31.0.tar.bz2&apos; | tar 
 #ln -s /usr/lib/i386-linux-gnu/libssl.a lib/common/linux32/
 #ln -s /usr/lib/i386-linux-gnu/libz.a lib/public/linux32/
 
-schroot --chroot steamrt_scout_i386 -- ./creategameprojects
+#schroot --chroot steamrt_scout_i386 -- 
+./creategameprojects
 schroot --chroot steamrt_scout_i386 -- make -j 8 -f DoubleAction.mak
 
 rm -rf /vagrant/bin
