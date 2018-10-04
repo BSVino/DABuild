@@ -75,7 +75,7 @@ for file_name in {client,server,game_shader_dx6}.dylib; do
 		done
 
 	if ! [ -f &quot;$target_directory&quot;/&quot;$file_name&quot; ]; then
-		echo &quot;$file_name&quot; could not be downloaded!
+		echo &gt;&amp;2 &quot;$file_name could not be downloaded!&quot;
         exit 1
 	fi
 done
