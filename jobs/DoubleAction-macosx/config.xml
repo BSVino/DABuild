@@ -62,9 +62,16 @@ Currently it just untars and archives stuff</description>
     <hudson.tasks.Shell>
       <command>#!/bin/bash -ex
 
-branch_name=&quot;$(basename &quot;$GIT_BRANCH&quot;)&quot;
+target_directory=mp/game/dab/bin
 
-tar xvf /vagrant/&quot;$branch_name&quot;.tar.gz --show-transformed --transform=&apos;s#.*/##&apos; --wildcards -C mp/game/dab/bin &quot;$branch_name&quot;/{dab/client,dab/server,game_shader_dx?}.dylib
+git tag -l --points-at HEAD |
+	sort |
+	while read tag_name; do
+		for file_name in {client,server,game_shader_dx6}.dylib; do
+			URL=&quot;${GIT_URL/.git//releases/download/&quot;$tag_name&quot;/&quot;$file_name&quot;}&quot;
+			wget -O &quot;$target_directory&quot;/&quot;$file_name&quot; &quot;$url&quot;
+		done
+	done
 </command>
     </hudson.tasks.Shell>
   </builders>
