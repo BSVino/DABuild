@@ -64,14 +64,21 @@ Currently it just untars and archives stuff</description>
 
 target_directory=mp/game/dab/bin
 
-git tag -l --points-at HEAD |
-	sort |
-	while read tag_name; do
-		for file_name in {client,server,game_shader_dx6}.dylib; do
+for file_name in {client,server,game_shader_dx6}.dylib; do
+	rm -f &quot;$target_directory&quot;/&quot;$file_name&quot;
+
+	git tag -l --points-at HEAD |
+		sort |
+		while read tag_name; do
 			url=&quot;${GIT_URL/.git//releases/download/&quot;$tag_name&quot;/&quot;$file_name&quot;}&quot;
 			wget -O &quot;$target_directory&quot;/&quot;$file_name&quot; &quot;$url&quot;
 		done
-	done
+
+	if ! [ -f &quot;$target_directory&quot;/&quot;$file_name&quot; ]; then
+		echo &quot;$file_name&quot; could not be downloaded!
+        exit 1
+	fi
+done
 </command>
     </hudson.tasks.Shell>
   </builders>
