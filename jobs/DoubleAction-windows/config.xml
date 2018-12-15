@@ -100,7 +100,7 @@ echo.EndGlobal&gt;&gt; DoubleAction.sln&#xd;
 </command>
     </hudson.tasks.BatchFile>
     <hudson.plugins.msbuild.MsBuildBuilder plugin="msbuild@1.29">
-      <msBuildName>from .NET Framework 4.0.30319</msBuildName>
+      <msBuildName>Microsoft Build Tools 2013</msBuildName>
       <msBuildFile>mp\src\DoubleAction.sln</msBuildFile>
       <cmdLineArgs>/p:Configuration=Release;Platform=Win32</cmdLineArgs>
       <buildVariablesAsProperties>false</buildVariablesAsProperties>
