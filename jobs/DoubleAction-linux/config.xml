@@ -43,7 +43,15 @@
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
     <submoduleCfg class="list"/>
-    <extensions/>
+    <extensions>
+      <hudson.plugins.git.extensions.impl.SparseCheckoutPaths>
+        <sparseCheckoutPaths>
+          <hudson.plugins.git.extensions.impl.SparseCheckoutPath>
+            <path>mp/src</path>
+          </hudson.plugins.git.extensions.impl.SparseCheckoutPath>
+        </sparseCheckoutPaths>
+      </hudson.plugins.git.extensions.impl.SparseCheckoutPaths>
+    </extensions>
   </scm>
   <assignedNode>linux</assignedNode>
   <canRoam>false</canRoam>
