@@ -24,7 +24,7 @@
           <name>git_ref</name>
           <description>Git branch or tag to build</description>
           <defaultValue>refs/remotes/origin/develop</defaultValue>
-          <trim>false</trim>
+          <trim>true</trim>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -53,16 +53,18 @@
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.39.1">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.41">
       <project>DoubleAction-linux</project>
       <filter>**/*.so</filter>
       <target>mp/game/dab/bin</target>
       <excludes></excludes>
-      <selector class="hudson.plugins.copyartifact.StatusBuildSelector"/>
+      <selector class="hudson.plugins.copyartifact.StatusBuildSelector">
+        <stable>true</stable>
+      </selector>
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.39.1">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.41">
       <project>DoubleAction-windows</project>
       <filter>**/*.dll</filter>
       <target>mp/game/dab/bin</target>
@@ -73,7 +75,7 @@
       <flatten>true</flatten>
       <doNotFingerprintArtifacts>false</doNotFingerprintArtifacts>
     </hudson.plugins.copyartifact.CopyArtifact>
-    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.39.1">
+    <hudson.plugins.copyartifact.CopyArtifact plugin="copyartifact@1.41">
       <project>DoubleAction-macosx</project>
       <filter>**/*.dylib</filter>
       <target>mp/game/dab/bin</target>
